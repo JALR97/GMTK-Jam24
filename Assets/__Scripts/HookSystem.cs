@@ -10,6 +10,7 @@ public class HookSystem : MonoBehaviour
     //Components
     [SerializeField] private GameObject hookPrefab;
     [SerializeField] private DistanceJoint2D joint;
+    [SerializeField] private SpriteRenderer ropeRenderer;
     
     //Balance Variables
     [SerializeField] private float launchSpeed = 25;
@@ -43,11 +44,16 @@ public class HookSystem : MonoBehaviour
         joint.connectedBody = hit;
         joint.distance = maxDistance;
         _hooked = true;
+        RenderRope();
+        ropeRenderer.enabled = true;
     }
 
     private void RenderRope()
     {
-        
+        Transform hookTransform = ropeRenderer.transform;
+        Vector2 dirConnection = joint.connectedBody.position - (Vector2)transform.position;
+        hookTransform.position = (Vector2)transform.position + (dirConnection / 2);
+        hookTransform.right = (Vector2)transform.position - joint.connectedBody.position;
     }
     
     private void Update()
@@ -64,6 +70,11 @@ public class HookSystem : MonoBehaviour
                 Unhook();
             }
             
+        }
+
+        if (_hooked)
+        {
+            RenderRope();
         }
     }
 
