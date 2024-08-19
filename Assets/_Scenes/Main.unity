@@ -861,6 +861,7 @@ GameObject:
   m_Component:
   - component: {fileID: 827472971}
   - component: {fileID: 827472972}
+  - component: {fileID: 827472973}
   m_Layer: 8
   m_Name: Sprite
   m_TagString: Untagged
@@ -877,8 +878,8 @@ Transform:
   m_GameObject: {fileID: 827472970}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 2, y: 2, z: 1}
+  m_LocalPosition: {x: 0, y: -0.5, z: 0}
+  m_LocalScale: {x: 0.2, y: -0.2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1514756894}
@@ -923,9 +924,9 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: fcc70b0fe46f4044691ecb2ba487e4c8, type: 3}
-  m_Color: {r: 0.5411765, g: 0.92156863, b: 0.94509804, a: 1}
+  m_SortingOrder: 1
+  m_Sprite: {fileID: 21300000, guid: f377e08b98ebac24c8d3e13a047d0893, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -935,6 +936,21 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &827472973
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 827472970}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0b7514708afa19f4aac76030a1546c05, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _Sprite: {fileID: 827472972}
+  shipOff: {fileID: 21300000, guid: f377e08b98ebac24c8d3e13a047d0893, type: 3}
+  shipOn: {fileID: 21300000, guid: aec377276980a45448ecce4abc903602, type: 3}
 --- !u!4 &891021024 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8506382393449266048, guid: ed02d947acfc5714bb7e20ceeeb6330b, type: 3}
@@ -1047,10 +1063,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 1514756893}
-  rotationSpeed: 180
-  accelerationForw: 50
-  accelerationBack: 50
-  maxSpeed: 10
+  rotationSpeed: 190
+  accelerationForw: 70
+  accelerationBack: 70
+  maxSpeed: 12
 --- !u!70 &1514756892
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -1083,8 +1099,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_Size: {x: 1.5, y: 1.5}
+  m_Offset: {x: 0, y: 0.07}
+  m_Size: {x: 2.0938106, y: 3.8202581}
   m_Direction: 0
 --- !u!50 &1514756893
 Rigidbody2D:
@@ -1146,7 +1162,7 @@ MonoBehaviour:
   joint: {fileID: 1514756896}
   ropeRenderer: {fileID: 245261139}
   launchSpeed: 25
-  maxDistance: 6
+  maxDistance: 8
   cooldown: 3
   ammo: 3
 --- !u!232 &1514756896
