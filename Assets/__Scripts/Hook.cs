@@ -10,7 +10,11 @@ public class Hook : MonoBehaviour
     {
         if (other.CompareTag("Debris"))
         {
-            GameObject.FindWithTag("Player").GetComponent<HookSystem>().Connect(other.GetComponent<Rigidbody2D>());
+            bool res = GameObject.FindWithTag("Player").GetComponent<HookSystem>().Connect(other.GetComponent<Rigidbody2D>());
+            if (res)
+            {
+                Destroy(gameObject);
+            }
         }
     }
 }

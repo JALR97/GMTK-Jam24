@@ -29,15 +29,15 @@ public class HookSystem : MonoBehaviour
         hook.GetComponent<Rigidbody2D>().velocity = hook.transform.up * launchSpeed;
     }
 
-    public void Connect(Rigidbody2D hit)
+    public bool Connect(Rigidbody2D hit)
     {
         if (_hooked) //no more than one connection
-            return;
+            return false;
 
         if ((hit.position - (Vector2)transform.position).magnitude > maxDistance)
         {
             Debug.Log("Debris too far");
-            return;
+            return false;
         }
         
         joint.enabled = true;
@@ -46,6 +46,7 @@ public class HookSystem : MonoBehaviour
         _hooked = true;
         RenderRope();
         ropeRenderer.enabled = true;
+        return true;
     }
 
     private void RenderRope()
@@ -54,6 +55,8 @@ public class HookSystem : MonoBehaviour
         Vector2 dirConnection = joint.connectedBody.position - (Vector2)transform.position;
         hookTransform.position = (Vector2)transform.position + (dirConnection / 2);
         hookTransform.right = (Vector2)transform.position - joint.connectedBody.position;
+        ropeRenderer.size = new Vector2(Math.Clamp(dirConnection.magnitude - 2f, 1.5f,maxDistance), 0.14f);
+        //ropeRenderer.size.Set(dirConnection.magnitude, 0.14f);
     }
     
     private void Update()
@@ -80,7 +83,10 @@ public class HookSystem : MonoBehaviour
 
     private void Unhook()
     {   
-        Debug.Log("Unhook()");
+        joint.connectedBody = null;
+        joint.enabled = false;
+        _hooked = false;
+        ropeRenderer.enabled = false;
     }
 
     IEnumerator Cooldown()
