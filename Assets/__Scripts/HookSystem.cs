@@ -44,6 +44,7 @@ public class HookSystem : MonoBehaviour
         joint.connectedBody = hit;
         joint.distance = maxDistance;
         _hooked = true;
+        hit.GetComponent<Asteroid>().Hooked();
         RenderRope();
         ropeRenderer.enabled = true;
         return true;
