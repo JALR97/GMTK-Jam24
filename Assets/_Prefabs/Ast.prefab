@@ -99,7 +99,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cfcbad4e86a46174890fbc84fe3e3c57, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sizeRange: 0.211
+  spriteRenderer: {fileID: 6397025621605902374}
+  circleCollider2D: {fileID: 7712727032177491008}
   graphics:
   - {fileID: 21300000, guid: e311ac01539be8141a87ad670014e862, type: 3}
   - {fileID: 21300000, guid: c452be64dff97284abcd6ed06d5e12d5, type: 3}
@@ -110,8 +111,7 @@ MonoBehaviour:
   - 1
   - 0.9
   - 1.65
-  spriteRenderer: {fileID: 6397025621605902374}
-  circleCollider2D: {fileID: 7712727032177491008}
+  sizeRange: 0.211
 --- !u!58 &7712727032177491008
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -160,7 +160,7 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 3
-  m_LinearDrag: 0
+  m_LinearDrag: 0.3
   m_AngularDrag: 0.05
   m_GravityScale: 0
   m_Material: {fileID: 0}
