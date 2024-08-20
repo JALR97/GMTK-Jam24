@@ -9,6 +9,7 @@ public class Glass : MonoBehaviour
     //Components
     [SerializeField] private SpriteRenderer closeSprite;
     [SerializeField] private SpriteRenderer openSprite;
+    
 
     [SerializeField] private GameObject message;
     [SerializeField] private GameObject speedMessage;
@@ -21,14 +22,15 @@ public class Glass : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Debris"))
         {
-            if (other.relativeVelocity.magnitude < breakSpeed)
-            {
-                speedMessage.SetActive(true);
-            }
-            else if (Asteroid.Connections < 5)
+            if (Asteroid.Connections < 5)
             {
                 quantityMessage.SetActive(true);
             }
+            else if (other.relativeVelocity.magnitude < breakSpeed)
+            {
+                speedMessage.SetActive(true);
+            }
+            
             
             if(other.relativeVelocity.magnitude >= breakSpeed && Asteroid.Connections >= 5)
             {

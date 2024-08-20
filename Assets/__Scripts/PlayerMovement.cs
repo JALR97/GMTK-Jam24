@@ -7,6 +7,7 @@ public class PlayerMovement : MonoBehaviour
 {   
     //Components
     [SerializeField] private Rigidbody2D rb;
+    [SerializeField] private GameObject pauseScreen;
     
     //Balance
     [SerializeField] private float rotationSpeed = 5f;
@@ -17,14 +18,35 @@ public class PlayerMovement : MonoBehaviour
     //Work variables
     private Vector2 inputDirection = Vector2.zero;
     private Vector3 eulerAngle;
+    private bool paused = false;
     
     //Functions
+    private void Awake()
+    {
+        Time.timeScale = 1;
+    }
+
     private void Update()
     {
         //Lee los ejes de movimiento, aka WASD y arrow keys.
         inputDirection.x = Input.GetAxisRaw("Horizontal");
         inputDirection.y = Input.GetAxisRaw("Vertical");
-        
+
+        if (Input.GetKeyDown(KeyCode.P) || Input.GetKeyDown(KeyCode.Escape))
+        {
+            if (!paused)
+            {
+                Time.timeScale = 0;
+                pauseScreen.SetActive(true);
+            }
+            else
+            {
+                Time.timeScale = 1;
+                pauseScreen.SetActive(false);
+            }
+
+            paused = !paused;
+        }
     }
 
     private void FixedUpdate()

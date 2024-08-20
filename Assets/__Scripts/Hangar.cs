@@ -7,11 +7,14 @@ public class Hangar : MonoBehaviour
 {
     [SerializeField] private int AsteroidsToWin = 85;
     [SerializeField] private GameObject winScreen;
+    [SerializeField] private GameObject moarMessage;
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Debris") && Asteroid.Connections >= AsteroidsToWin)
+        if (other.CompareTag("Debris"))
         {
-            winScreen.SetActive(true);
+            if (Asteroid.Connections >= AsteroidsToWin)
+                winScreen.SetActive(true);
+            
         }
     }
 }
