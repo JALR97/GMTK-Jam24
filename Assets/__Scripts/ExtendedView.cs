@@ -25,7 +25,6 @@ public class ExtendedView : MonoBehaviour {
         mouseVector.y -= Screen.height/2f;
         
         mouseDistance = mouseVector.magnitude;
-        Debug.Log(mouseDistance);
         if (mouseDistance > inactiveRadius) {
             targetPos = player.position +
                                  mouseVector.normalized * Mathf.Min((mouseDistance - inactiveRadius), maxExtension);

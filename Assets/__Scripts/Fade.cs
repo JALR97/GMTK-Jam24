@@ -12,7 +12,7 @@ public class Fade : MonoBehaviour
     [SerializeField] private TMP_Text Text2;
 
     [SerializeField] private float fadeTime = 6;
-    private float timer = 7;
+    [SerializeField] private float timer = 7;
     private void Update()
     {
         backG.color = new Color(backG.color.r, backG.color.g, backG.color.b, timer / fadeTime);

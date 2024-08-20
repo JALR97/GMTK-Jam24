@@ -14,9 +14,9 @@ public class HookSystem : MonoBehaviour
     
     //Balance Variables
     [SerializeField] private float launchSpeed = 25;
-    [SerializeField] private float maxDistance = 6;
+    [SerializeField] private float maxDistance = 9;
     [SerializeField] private float cooldown = 3;
-    [SerializeField] private float ammo = 3;
+    //[SerializeField] private float ammo = 3;
     
     //Work Variables
     private bool _canShoot = true;
@@ -80,12 +80,20 @@ public class HookSystem : MonoBehaviour
         {
             RenderRope();
         }
+
+        if (Asteroid.Connections > 1)
+        {
+            maxDistance = 9 + Asteroid.Connections * 0.2f;
+        }
     }
 
     private void Unhook()
-    {   
+    {
+        //joint.connectedBody.GetComponent<Asteroid>()
+        joint.connectedBody.GetComponent<Asteroid>().UnHooked();
         joint.connectedBody = null;
         joint.enabled = false;
+        //Asteroid.UnhookAll();
         _hooked = false;
         ropeRenderer.enabled = false;
     }
@@ -95,5 +103,5 @@ public class HookSystem : MonoBehaviour
        yield return new WaitForSeconds(cooldown);
        _canShoot = true;
     }
-    
+
 }
